@@ -1,0 +1,43 @@
+/*
+  Super Sensing
+  Imra Ali
+  DIGF-3010-001 Advanced Wearable Electronics
+  OCAD University
+  Created on 2022-03-03
+  
+  Project Name: Glove Light
+*/
+
+// When there is brightness - the Neopixels will remain OFF
+input.onLightConditionChanged(LightCondition.Bright, function () {
+    light.clear()
+})
+
+// Upon shaking twinkle animation appear for 2 seconds and the lights turn OFF
+input.onGesture(Gesture.Shake, function () {
+    light.showAnimation(light.sparkleAnimation, 2000)
+    light.clear()
+})
+forever(function () {
+  // Upon touching pin A3 = White neolights remain ON at 25% brightness
+    if (input.touchA3.wasPressed()) {
+        light.setBrightness(50)
+        light.showRing(
+        `white white white white white white white white white white`
+        )
+        
+  // Upon touching pin A3 = White neolights remain ON at 50% brightness
+    } else if (input.touchA1.wasPressed()) {
+        light.setBrightness(100)
+        light.showRing(
+        `white white white white white white white white white white`
+        )
+        
+  // Upon touching pin A7 = White neolights remain ON at 100% brightness
+    } else if (input.touchA7.wasPressed()) {
+        light.setBrightness(250)
+        light.showRing(
+        `white white white white white white white white white white`
+        )
+    }
+})
